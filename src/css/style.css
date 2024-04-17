@@ -760,18 +760,14 @@ label {
 
 
 .hori{
-  /* width: 50rem; */
-  width: auto;
-}
-.hor{
+  
   width: 50rem;
 }
+
 @media screen and (max-width:800px) {
   .hori{
     display: none;
   }
-  .hor{
-    display: none;
-  }
+  
 
 }
