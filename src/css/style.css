@@ -308,8 +308,17 @@ form input {
   width: 60%;
 }
 
+#email {
+  width: 350px;
+  border-radius: 15px;
+  border: 2px solid #055da8;
+  height: 40px;
+  padding: 10px;
+  margin-top: 20px;
+}
 
 .flexy {
+  /* border-right: 2px solid #055da8; */
   text-align: center;
 }
 
@@ -751,5 +760,18 @@ label {
 
 
 .hori{
+  /* width: 50rem; */
+  width: auto;
+}
+.hor{
   width: 50rem;
+}
+@media screen and (max-width:800px) {
+  .hori{
+    display: none;
+  }
+  .hor{
+    display: none;
+  }
+
 }
