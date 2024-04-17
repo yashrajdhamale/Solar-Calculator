@@ -69,6 +69,7 @@ function click(evt) {
 
 const value = (data) => {
     let allValue = document.querySelectorAll(".div")
+    console.log(allValue);
     let list = Array.from(allValue)
   
     total = 0
@@ -85,18 +86,18 @@ const value = (data) => {
         let sumvalue3 = sum3.split(" ")[0];
         
         if (data === "daily"){
-            let num = sumvalue * sumvalue2 * sumvalue3
+            let num = (sumvalue * sumvalue2 * sumvalue3) / 1000; 
             total += num
         }
 
         if (data === "weekly"){
-            let num = sumvalue * sumvalue2 * sumvalue3 * 7
+            let num = (sumvalue * sumvalue2 * sumvalue3 * 7) / 1000
             console.log(sumvalue,sumvalue2)
             total += num
         }
 
         if (data === "monthly") {
-            let num = sumvalue * sumvalue2 * sumvalue3 * 28
+            let num = (sumvalue * sumvalue2 * sumvalue3 * 30) / 1000
             total += num
         }
     
@@ -116,8 +117,8 @@ const value = (data) => {
         document.querySelector(".but-active").classList.remove("but-active")
         daily.classList.add("but-active")
     }
-    
-    result.textContent = total
+    let roundedNum = total.toFixed(3);
+    result.textContent = roundedNum;
 }
 
 
