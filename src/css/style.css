@@ -437,7 +437,7 @@ input::-webkit-calendar-picker-indicator {
 }
 
 .flex1 {
-  width: 50%;
+  width: 100%;
 }
 
 label {
@@ -757,3 +757,8 @@ label {
 }
 
 /* END OF BLOG */
+
+
+.hori{
+  width: 50rem;
+}

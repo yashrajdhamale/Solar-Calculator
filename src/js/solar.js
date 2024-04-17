@@ -5,17 +5,16 @@ let powerValue = document.querySelector('#power_input');
 let timeValue = document.querySelector('#power_hr');
 let tbody = document.querySelector(".app-list");
 let result = document.querySelector("#result_num");
-let email = document.querySelector("#email")
 let butSend = document.querySelector(".but-send")
+let installation = document.querySelector("#installation");
+
 
 let daily = document.querySelector("#but-daily");
 let weekly = document.querySelector("#but-week");
 let monthly = document.querySelector("#but-month");
 
 let total = 0
-let total1 = 0
-let total2 = 0
-let total3 = 0
+
 
 function click(evt) {
         
@@ -35,7 +34,7 @@ function click(evt) {
     td1.classList.add("space")
     td2.textContent = quantityValue.value + " qty"
     td2.classList.add("space")
-    td3.textContent = powerValue.value + " Watts"
+    td3.textContent = powerValue.value + " kw"
     td3.classList.add("space")
     td4.textContent = timeValue.value + ' hr'
     td4.classList.add("space")
@@ -79,11 +78,13 @@ const value = (data) => {
         let sum = list[i].children[1].textContent;
         let sum2 = list[i].children[2].textContent;
         let sum3 = list[i].children[3].textContent;
+
         console.log(sum3)
 
         let sumvalue = sum.split(" ")[0];
         let sumvalue2 = sum2.split(" ")[0];
-        let sumvalue3 = sum3.split(" ")[0];
+        let sumvalue3 = sum3.split(" ")[0] ;
+        console.log(sumvalue2);
         
         if (data === "daily"){
             let num = (sumvalue * sumvalue2 * sumvalue3) / 1000; 
@@ -119,6 +120,8 @@ const value = (data) => {
     }
     let roundedNum = total.toFixed(3);
     result.textContent = roundedNum;
+
+    installation.textContent = `The Solar Installation for your appliances is ${(roundedNum*60000).toFixed(3)} `;
 }
 
 
@@ -134,68 +137,6 @@ const deleteValue = (evt) => {
 }
     
 
-const sendMail = () => {
-    let allValue = document.querySelectorAll(".div")
-    let list = Array.from(allValue)
-
-    total1 = 0
-    total2 = 0
-    total3 = 0
-
-    for (let i = 0; i < list.length; i++){
-       
-        let sum = list[i].children[1].textContent;
-        let sum2 = list[i].children[2].textContent;
-        let sum3 = list[i].children[3].textContent;
-    
-
-        let sumvalue = sum.split(" ")[0];
-        let sumvalue2 = sum2.split(" ")[0];
-        let sumvalue3 = sum3.split(" ")[0];
-        
-        let num1 = sumvalue * sumvalue2 * sumvalue3
-        total1 += num1
-       
-        let num2 = sumvalue * sumvalue2 * 7
-        total2 += num2
-       
-        let num3 = sumvalue * sumvalue2 * 28
-        total3 += num3
-
-   
-    }
-
-    
-
-const data = `The Daily Solar Consumption for your appliances is ${total1} watt`
-const data1 = `The Weekly Solar Consumption for your appliances is ${total2} watt`
-const data2 = `The Monthly Solar Consumption  for your appliances is ${total3} watt`
-                 
-    
-var templateParams = {
-    message1: data,
-    message2: data1,
-    message3: data2,
-    email: email.value
-};
- 
-emailjs.send('gmail', 'contact_form', templateParams, "user_uINuNBjAvZ4Re6NBn6W7K")
-    .then(function(response) {
-       console.log('SUCCESS!', response.status, response.text);
-       alert("Results Sent Successfully")
-    }, function(error) {
-       console.log('FAILED...', error);
-    });
-
-email.value = ""
-tbody.innerHTML = ""
-result.textContent = 0
-
-
-
-}
-
-
 
 
 addBtn.addEventListener('click', click);
@@ -203,7 +144,7 @@ daily.addEventListener('click', () => ( value("daily") ))
 weekly.addEventListener('click', () => ( value("weekly") ))
 monthly.addEventListener('click', () => ( value("monthly") ))
 tbody.addEventListener('click', deleteValue)
-butSend.addEventListener("click", sendMail)
+
 
   
 
